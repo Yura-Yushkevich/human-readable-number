@@ -1,4 +1,4 @@
-module.exports = function toReadable (number) {
+function toReadable (number) {
   const numToString = number.toString();
   const lengthStr = numToString.length;
 
@@ -6,8 +6,7 @@ module.exports = function toReadable (number) {
             0: 'zero',
             1: 'one',
             2: 'two',
-            3: 'th
-            ree',   
+            3: 'three',   
             4: 'four',   
             5: 'five',   
             6: 'six',   
@@ -26,7 +25,6 @@ module.exports = function toReadable (number) {
   }
 
   const twenty = {
-            1: 'ten',
             2: 'twenty',
             3: 'thirty',
             4: 'forty',
@@ -42,7 +40,7 @@ module.exports = function toReadable (number) {
   }
 
   if(lengthStr == 2){
-    if(numToString[0] == 1 && numToString[1] != 0){
+    if(numToString[0] == 1){
       return units[numToString];
     }else{
       if(numToString[1]!=0){
@@ -55,23 +53,16 @@ module.exports = function toReadable (number) {
   }
 
   if(lengthStr == 3){
-    if (numToString[1]==0 && numToString[2]==0){
-      return `${units[numToString[0]]} hundred`;
-    }
-    else if(numToString[1]==1 && numToString[2]!=0){
-      return `${units[numToString[0]]} hundred ${units[numToString[1]+numToString[2]]}`;
-    }
-    else if(numToString[1]==1 && numToString[2]==0){
-      return `${units[numToString[0]]} hundred ${twenty[numToString[1]]}`;
-    }
-    else if(numToString[1]==0 && numToString[2]!=0){
-      return `${units[numToString[0]]} hundred ${units[numToString[2]]}`;
-    }
-    else if(numToString[1]!=0 && numToString[2]==0){
-      return `${units[numToString[0]]} hundred ${twenty[numToString[1]]}`;
-    }     
-    else if(numToString[1]!=0 && numToString[2]!=0){
+    if(numToString[2] != 0){
       return `${units[numToString[0]]} hundred ${twenty[numToString[1]]} ${units[numToString[2]]}`;
-    }  
+    }else{
+      return `${units[numToString[0]]} hundred ${twenty[numToString[1]]}`;
+    }
+    
   }
+
+  
 }
+
+
+console.log(toReadable(448));
